@@ -5,21 +5,22 @@ import { observable } from "@legendapp/state";
 import { useObservable, useValue, For } from "@legendapp/state/react";
 
 // observable() crea un estado global de Legend State.
-// Este es el unico estado que hay que sincronizar con la base de datos,
+// Este es el único estado que hay que sincronizar con la base de datos,
 // ya que persiste y puede ser compartido entre múltiples componentes.
 
 // No confundir con useObservable(), que crea un estado local del componente
 // y solo vive mientras el componente está montado.
 
-// La cantidad de pisos es un array porque es mas facil iterar sobre él para renderizarlos
+// La cantidad de pisos es un array porque es más fácil iterar sobre él para renderizarlos.
 
 const floors = observable([{}]);
 
-// La app tiene una div que contiene el Canvas. Dentro del Canvas hay dos escenas separadas, World y Menu.
-// World es la escena principal que contiene el mundo 3D en camara perspectiva.
-// Menu es la escena secundaria que contiene el menu en camara ortogonal.
-// Aunque World y Menu están fuera del Canvas, sus <View/> se renderizan dentro gracias a <View.Port/>.
-// View es un componente que te permite mostrar distintas escenas en distintas regiones de la pantalla
+// La app tiene una div que contiene el Canvas. Dentro del Canvas hay dos escenas separadas: World y Menu.
+// World es la escena principal que contiene el mundo 3D en cámara perspectiva.
+// Menu es la escena secundaria que contiene el menú en cámara ortogonal.
+
+// Aunque World y Menu están fuera del Canvas, sus <View /> se renderizan dentro gracias a <View.Port />.
+// View es un componente que te permite mostrar distintas escenas en distintas regiones de la pantalla.
 
 export default function App() {
   const container = useRef();
@@ -35,7 +36,7 @@ export default function App() {
   );
 }
 
-// El componente View crea una div que lo contiene, cambias su estilo con el prop style.
+// El componente View crea una div que contiene la escena 3D; su estilo se cambia con el prop style.
 
 function World() {
   return (
@@ -49,7 +50,7 @@ function World() {
   );
 }
 
-// El componente <For> de Legend-State itera un estado en forma de array y renderiza un componente por cada item.
+// El componente <For> de Legend State itera un estado en forma de array y renderiza un componente por cada ítem.
 
 function Building() {
   return (
@@ -60,7 +61,7 @@ function Building() {
 }
 
 // useObservable crea un estado local dentro del componente.
-// useValue suscribe el componente a ese estado para que se vuelva a renderizar cuando cambia el estado.
+// useValue suscribe el componente a ese estado para que se vuelva a renderizar cuando cambia.
 // useFrame se ejecuta en cada frame del render loop de R3F y permite animar objetos.
 
 function Box({ baseColor, ...props }) {
@@ -89,11 +90,11 @@ function Box({ baseColor, ...props }) {
   );
 }
 
-// Para modificar un estado de legend state (tanto global como local) se usa el metodo .set()
-// Si el observable es un array, se puede usar metodos de los arrays como push y pop para modificarlo.
-// Para hacer lo mismo con .set() seria de la siguiente manera:
+// Para modificar un estado de Legend State (tanto global como local) se usa el método .set().
+// Si el observable es un array, se pueden usar métodos de los arrays como .push() y .pop() para modificarlo.
+// Para hacer lo mismo con .set(), sería de la siguiente manera:
 // const addFloor = () => floors.set([...floors.get(), {}]);
-// const removeFloor = () => floors.set(floors.get().pop);
+// const removeFloor = () => floors.set(floors.get().slice(0, -1));
 
 function Menu() {
   const addFloor = () => floors.push({});
