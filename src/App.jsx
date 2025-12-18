@@ -115,11 +115,8 @@ function Button(props) {
   const hovered = useObservable(false);
   const isHovered = useValue(hovered);
 
-  const meshRef = useRef();
-  useFrame((state, delta) => (meshRef.current.rotation.y += delta));
-
   return (
-    <mesh {...props} ref={meshRef} onPointerOver={(event) => hovered.set(true)} onPointerOut={(event) => hovered.set(false)}>
+    <mesh {...props} onPointerOver={(event) => hovered.set(true)} onPointerOut={(event) => hovered.set(false)}>
       <sphereGeometry args={[1]} />
       <meshStandardMaterial color={isHovered ? "hotpink" : props.color} />
     </mesh>
