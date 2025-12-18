@@ -10,8 +10,8 @@ _Una plantilla mínima y colorida con React Three Fiber + Legend State._
 ## 📋 Inicio rápido
 
 1. Cloná el repositorio
-2. Ejecutá `npm install`
-3. Ejecutá `npm run dev`
+2. Ejecutá `bun install`
+3. Ejecutá `bun run dev`
 
 **Toriris** 🌈
 
